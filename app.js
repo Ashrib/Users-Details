@@ -235,13 +235,6 @@ var divOfList = document.getElementById("userList");
 
 // filtering array of object by using (var in loop)
 for (var key in usersList) {
-
-    // if (typeof (usersList[key].address) === "object") {
-    //     console.log((usersList[key].address))
-    // }
-    // if (typeof (usersList[key].company) === "object") {
-    //     console.log((usersList[key].company))
-    // }
     // creating main div
     var div = document.createElement('div')
     div.setAttribute("class", "list")
@@ -272,15 +265,21 @@ for (var key in usersList) {
     btn.appendChild(btnText)
     div.appendChild(btn)
 
-
     divOfList.appendChild(div)
 }
 
 var getDiv = document.getElementById("mainofInfo");
-getDiv.setAttribute("id","main-Div-Of-Info");
 var detailsDiv = document.createElement("div");
 detailsDiv.setAttribute("id","detail-box");
 getDiv.appendChild(detailsDiv);
+var closeHead = document.createElement("div");
+closeHead.setAttribute("id","close-head");
+detailsDiv.appendChild(closeHead);
+var close_btn = document.createElement("button");
+close_btn.setAttribute("id", "close-btn")
+close_btn.appendChild(document.createTextNode("X"));
+close_btn.setAttribute("onClick", "closeTab()")
+closeHead.appendChild(close_btn);
 
 
 function details(el) {
@@ -288,7 +287,6 @@ function details(el) {
     console.log(el)
     for (var key in usersList) {
         if (usersList[key].id === el) {
-            //console.log(usersList[key])
             for(var x in usersList[key]) {
 
                     if (typeof (usersList[key][x]) === "object") {
@@ -298,13 +296,13 @@ function details(el) {
                         if (typeof (usersList[key][x][c]) === "object") {
                             
                             for(var m in usersList[key][x][c]) {
-                        para.appendChild(document.createTextNode(usersList[key][x][c][m]));
+                                para.appendChild(document.createTextNode(usersList[key][x][c][m]));
 
                             }
                         }
                         else{
                             para.appendChild(document.createTextNode(usersList[key][x][c]));
-                        detailsDiv.appendChild(para);
+                            detailsDiv.appendChild(para);
                         }
                     }
                     }
@@ -316,4 +314,14 @@ function details(el) {
             }
         }
     }
+}
+function closeTab() {
+    getDiv.style.display = "none";
+    var tg = detailsDiv.childNodes;
+    console.log(tg)
+    for(var e=1; e<tg.length; e++) {
+        detailsDiv.removeChild(tg[e])
+        //console.log(tg[e])
+    }
+    //console.log(detailsDiv.childNodes)
 }

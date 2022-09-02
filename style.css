@@ -2,6 +2,13 @@ body{
     margin: 0%;
     padding: 0%;
 }
+#main-container{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    height: calc(100vh);
+    width: calc(100vw);
+}
 .list {
     display: flex;
     height: 50px;
@@ -30,7 +37,7 @@ body{
     width: 60%;
     font-size: 2em;
 }
-#main-Div-Of-Info{
+#mainofInfo{
     display: none;
     justify-content: center;
     align-items: center;
@@ -40,7 +47,24 @@ body{
     background-color: rgba(0, 0, 0, 0.705);
 }
 #detail-box{
-    height: 300px;
-    width: 500px;
+    height: 350px;
+    width: 550px;
     background-color: white;
+}
+#close-head{
+    display: flex;
+    justify-content: right;
+    height: 8%;
+    background-color: aqua;
+}
+#close-btn{
+    cursor: pointer;
+    border: none;
+    font-size: 1.1em;
+    font-weight: 700;
+    background-color: transparent;
+}
+#close-btn:hover{
+    background-color: red;
+    color: white;
 }

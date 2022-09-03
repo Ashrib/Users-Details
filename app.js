@@ -317,11 +317,12 @@ function details(el) {
 }
 function closeTab() {
     getDiv.style.display = "none";
-    var tg = detailsDiv.childNodes;
-    console.log(tg)
-    for(var e=1; e<tg.length; e++) {
-        detailsDiv.removeChild(tg[e])
-        //console.log(tg[e])
-    }
+    // var tg = detailsDiv.childNodes;
+    // console.log(tg)
+    // for(var e=1; e<tg.length; e++) {
+    //     detailsDiv.removeChild(tg[e])
+    //     //console.log(tg[e])
+    // }
     //console.log(detailsDiv.childNodes)
+
 }

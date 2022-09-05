@@ -311,7 +311,7 @@ function details(el) {
                     }
                     else{
                         var para = document.createElement("p");
-                        para.appendChild(document.createTextNode(x.toUpperCase()+":- "+usersList[key][x]));//[c]+":"+
+                        para.appendChild(document.createTextNode(x.toUpperCase()+":- "+usersList[key][x]));
                         detailBody.appendChild(para);
                     }
             }
@@ -323,7 +323,7 @@ function closeTab() {
 
     var a = document.getElementById("detail-box");
     var childToRemove = a.childNodes;
-    for(var e=1; e<childToRemove.length; e++) {    //remove previous data of modal, if it exist
+    for(var e=1; e<childToRemove.length; e++) {   //remove previous data of modal, if it exist
         a.removeChild(childToRemove[e]);
       }
 }

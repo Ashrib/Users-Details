@@ -235,6 +235,7 @@ var divOfList = document.getElementById("userList");
 
 // filtering array of object by using (var in loop)
 for (var key in usersList) {
+
     // creating main div
     var div = document.createElement('div')
     div.setAttribute("class", "list")
@@ -267,7 +268,6 @@ for (var key in usersList) {
 
     divOfList.appendChild(div)
 }
-
 var getDiv = document.getElementById("mainofInfo");
 var detailsDiv = document.createElement("div");
 detailsDiv.setAttribute("id","detail-box");
@@ -281,35 +281,38 @@ close_btn.appendChild(document.createTextNode("X"));
 close_btn.setAttribute("onClick", "closeTab()")
 closeHead.appendChild(close_btn);
 
-
 function details(el) {
     getDiv.style.display = "flex";
     console.log(el)
+    var detailBody = document.createElement("div");
+    detailBody.setAttribute("id", "detail-body");
+    detailsDiv.appendChild(detailBody);
+
     for (var key in usersList) {
         if (usersList[key].id === el) {
             for(var x in usersList[key]) {
 
                     if (typeof (usersList[key][x]) === "object") {
                     var para = document.createElement("p");
+                    para.appendChild(document.createTextNode(x.toUpperCase()+":- "))
 
                     for(var c in usersList[key][x]) {
                         if (typeof (usersList[key][x][c]) === "object") {
                             
                             for(var m in usersList[key][x][c]) {
-                                para.appendChild(document.createTextNode(usersList[key][x][c][m]));
-
+                                para.appendChild(document.createTextNode(c+": "+m+": "+usersList[key][x][c][m]+", "));
                             }
                         }
                         else{
-                            para.appendChild(document.createTextNode(usersList[key][x][c]));
-                            detailsDiv.appendChild(para);
+                            para.appendChild(document.createTextNode(c+": "+usersList[key][x][c]+", "));
+                            detailBody.appendChild(para);
                         }
                     }
                     }
                     else{
                         var para = document.createElement("p");
-                        para.appendChild(document.createTextNode(usersList[key][x]));//[c]+":"+
-                        detailsDiv.appendChild(para);
+                        para.appendChild(document.createTextNode(x.toUpperCase()+":- "+usersList[key][x]));//[c]+":"+
+                        detailBody.appendChild(para);
                     }
             }
         }
@@ -317,12 +320,10 @@ function details(el) {
 }
 function closeTab() {
     getDiv.style.display = "none";
-    // var tg = detailsDiv.childNodes;
-    // console.log(tg)
-    // for(var e=1; e<tg.length; e++) {
-    //     detailsDiv.removeChild(tg[e])
-    //     //console.log(tg[e])
-    // }
-    //console.log(detailsDiv.childNodes)
 
+    var a = document.getElementById("detail-box");
+    var childToRemove = a.childNodes;
+    for(var e=1; e<childToRemove.length; e++) {    //remove previous data of modal, if it exist
+        a.removeChild(childToRemove[e]);
+      }
 }
